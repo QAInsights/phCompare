@@ -1,0 +1,627 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+
+
+
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+
+
+      <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+
+
+
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+
+  <style type="text/css">
+    @import url(//fonts.googleapis.com/css?family=Andada);
+body {
+  padding: 16px;
+  font-family: Andada;
+  background: white;
+  color: #EA532A;
+}
+
+img {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+input {
+  font: inherit;
+  color: black;
+  text-align: inherit;
+  outline: none;
+  cursor: text;
+}
+
+td {
+  text-align: left;
+}
+
+a {
+  color: #563D7C;
+}
+
+.btn-primary {
+  background-color: #563D7C;
+  width: 100%;
+}
+
+.btn.btn-primary[disabled] {
+  background-color: grey;
+}
+
+#mydetails {
+  background: white;
+  border-radius: 4px;
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+  transition: all 0.2s;
+  margin: 0 auto;
+  width: 700px;
+  color: #EA532A;
+}
+
+.jumbotron {
+  background: #563D7C;
+  border-radius: 4px;
+  color: white;
+}
+
+#sub-banner-message {
+  background: #563D7C;
+  border-radius: 4px;
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+  transition: all 0.2s;
+  margin: 0 auto;
+  width: 700px;
+  color: white;
+}
+
+#banner-message.alt {
+  background: #0084ff;
+  color: #fff;
+  margin-top: 40px;
+  width: 200px;
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   speak for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+
+body.loading {
+  overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+
+body.loading .modal {
+  display: block;
+}
+
+.footer-bottom {
+  padding: 40px 0 30px;
+  border-top: 1px solid #666;
+  background: #563D7C;
+}
+
+.copyright-text p {
+  color: #ccc;
+  margin-top: 9px;
+  margin-bottom: 0;
+}
+
+.social-link li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.social-link li a {
+  color: #ccc;
+  border: 1px solid #ccc;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  transition: .5s;
+}
+
+  </style>
+
+  <title>jQuery addClass example by naveenkumarn</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+window.onload=function(){
+
+$(document).ready(function() {
+  //disable compare button
+  $('#friendsMakeDiv').append("");
+  $('#btnCompare').attr('disabled', true);
+  $('.checkInput').keyup(function() {
+    if ($("#yours").val().length != 0 && $("#friends").val().length != 0 && $("#yours").val() > 0 && $("#friends").val() > 0) {
+      $('#btnCompare').attr('disabled', false);
+    } else {
+      $('#btnCompare').attr('disabled', true);
+    }
+  })
+  //clear button
+  $("#btnClear").click(function() {
+    document.getElementById("yours").value = "";
+    document.getElementById("friends").value = "";
+    $('#btnCompare').attr('disabled', true);
+  });
+  $("#divLoading").hide();
+  $("#btnCompare").click(function() {
+    $("#divLoading").show();
+    //get auth code
+    $.post('https://api.producthunt.com/v1/oauth/token', {
+      "client_id": "b98848f0a1d4373e49107c06349aa6ed12ad4dbafa192b2780ca19fa34f56155",
+      "client_secret": "664ff35f9d806a6b0f72a6d1d53a613dd7366ba6f55873387171c19437efb172",
+      "grant_type": "client_credentials"
+    }, function(data) {
+      //get details
+      $.ajax({
+        url: "https://api.producthunt.com/v1/users/" + document.getElementById("yours").value,
+        type: "GET",
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('Authorization', 'Bearer ' + data.access_token)
+        },
+        success: function(result) {
+          //find the deleted user
+          var yourUsername;
+          yourUsername = result.user.username;
+          if (yourUsername.toLowerCase() === "deleted_user") {
+            document.getElementById("yourName").innerHTML = "Bummer! User not found";
+            document.getElementById("yourUsername").innerHTML = "";
+            document.getElementById("yourHeadLine").innerHTML = "";
+            document.getElementById("yourWebsite").innerHTML = "";
+            document.getElementById("yourTwitter").innerHTML = "";
+            document.getElementById("yourFollowers").innerHTML = "";
+            document.getElementById("yourFollowing").innerHTML = "";
+            document.getElementById("yourPHLink").innerHTML = "";
+            document.getElementById("yourMakes").innerHTML = "";
+            $("#yourImage").attr("src", "https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg");
+            $("#divLoading").hide();
+          } else {
+            document.getElementById("yourName").innerHTML = result.user.name;
+            document.getElementById("yourUsername").innerHTML = result.user.username;
+            document.getElementById("yourHeadLine").innerHTML = result.user.headline;
+            document.getElementById("yourWebsite").innerHTML = result.user.website_url;
+            $("#yourWebsite").attr("href", result.user.website_url);
+
+            document.getElementById("yourTwitter").innerHTML = result.user.twitter_username;
+            $("#yourTwitter").attr("href", "https://twitter.com/" + result.user.twitter_username);
+            document.getElementById("yourFollowers").innerHTML = result.user.followers_count;
+            document.getElementById("yourFollowing").innerHTML = result.user.followings_count;
+            document.getElementById("yourPHLink").innerHTML = "PH Profile";
+            $("#yourPHLink").attr("href", result.user.profile_url);
+            $("#yourImage").attr("src", result.user.image_url.original);
+            document.getElementById("yourMakes").innerHTML = result.user.maker_of_count;
+          }
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          document.getElementById("yourName").innerHTML = "Bummer! User not found";
+          document.getElementById("yourUsername").innerHTML = "";
+          document.getElementById("yourHeadLine").innerHTML = "";
+          document.getElementById("yourWebsite").innerHTML = "";
+          document.getElementById("yourTwitter").innerHTML = "";
+          document.getElementById("yourFollowers").innerHTML = "";
+          document.getElementById("yourFollowing").innerHTML = "";
+          document.getElementById("yourPHLink").innerHTML = "";
+          document.getElementById("yourMakes").innerHTML = "";
+          $("#yourImage").attr("src", "https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg");
+          $("#divLoading").hide();
+        }
+      }, 'json');
+    });
+
+  });
+
+  //Friends
+  $("#btnCompare").click(function() {
+
+    //get auth code
+    $.post('https://api.producthunt.com/v1/oauth/token', {
+      "client_id": "b98848f0a1d4373e49107c06349aa6ed12ad4dbafa192b2780ca19fa34f56155",
+      "client_secret": "664ff35f9d806a6b0f72a6d1d53a613dd7366ba6f55873387171c19437efb172",
+      "grant_type": "client_credentials"
+    }, function(friendsdata) {
+
+      console.log(friendsdata.access_token);
+
+      //get details
+      $.ajax({
+        url: "https://api.producthunt.com/v1/users/" + document.getElementById("friends").value,
+        type: "GET",
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('Authorization', 'Bearer ' + friendsdata.access_token)
+        },
+        success: function(friendsresult) {
+          //find the deleted user
+          var friendsUsername;
+          friendsUsername = friendsresult.user.username;
+          if (friendsUsername.toLowerCase() === "deleted_user") {
+            document.getElementById("friendsName").innerHTML = "Bummer! User not found";
+            document.getElementById("friendsUsername").innerHTML = "";
+            document.getElementById("friendsHeadLine").innerHTML = "";
+            document.getElementById("friendsWebsite").innerHTML = "";
+            document.getElementById("friendsTwitter").innerHTML = "";
+            document.getElementById("friendsFollowers").innerHTML = "";
+            document.getElementById("friendsFollowing").innerHTML = "";
+            document.getElementById("friendsPHLink").innerHTML = "";
+            $("#friendsImage").attr("src", "https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg");
+            document.getElementById("friendsMakes").innerHTML = "";
+            $("#divLoading").hide();
+          } else {
+
+            document.getElementById("friendsName").innerHTML = friendsresult.user.name;
+            document.getElementById("friendsUsername").innerHTML = friendsresult.user.username;
+            document.getElementById("friendsHeadLine").innerHTML = friendsresult.user.headline;
+            document.getElementById("friendsWebsite").innerHTML = friendsresult.user.website_url;
+            $("#friendsWebsite").attr("href", friendsresult.user.website_url);
+            document.getElementById("friendsTwitter").innerHTML = friendsresult.user.twitter_username;
+            $("#friendsTwitter").attr("href", "https://twitter.com/" + friendsresult.user.twitter_username);
+            document.getElementById("friendsFollowers").innerHTML = friendsresult.user.followers_count;
+            document.getElementById("friendsFollowing").innerHTML = friendsresult.user.followings_count;
+            document.getElementById("friendsPHLink").innerHTML = "PH Profile";
+            $("#friendsPHLink").attr("href", friendsresult.user.profile_url);
+            $("#friendsImage").attr("src", friendsresult.user.image_url.original);
+            document.getElementById("friendsMakes").innerHTML = friendsresult.user.maker_of_count;
+            $("#divLoading").hide();
+
+          }
+        },
+        error: function(xhr, textStatus, errorThrown) {
+          document.getElementById("friendsName").innerHTML = "Bummer! User not found";
+          document.getElementById("friendsUsername").innerHTML = "";
+          document.getElementById("friendsHeadLine").innerHTML = "";
+          document.getElementById("friendsWebsite").innerHTML = "";
+          document.getElementById("friendsTwitter").innerHTML = "";
+          document.getElementById("friendsFollowers").innerHTML = "";
+          document.getElementById("friendsFollowing").innerHTML = "";
+          document.getElementById("friendsPHLink").innerHTML = "";
+          $("#friendsImage").attr("src", "https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg");
+          document.getElementById("friendsMakes").innerHTML = "";
+          $("#divLoading").hide();
+        }
+      });
+    }, 'json');
+
+    //Rule Manipulation
+    //<!-- UP https://www.freeiconspng.com/uploads/green-arrow-png-7.png
+    //DOWN https://www.freeiconspng.com/uploads/green-arrow-png-9.png
+
+    //MAKE COUNT
+
+    $(document).ajaxStop(function() {
+
+      var intYourMake, intFriendsMake;
+      var intYourFollowers, intFriendsFollowers;
+      var intYourFollowingCount, intFriendsFollowingCount;
+
+      intYourMake = document.getElementById("yourMakes").innerHTML;
+      intFriendsMake = document.getElementById("friendsMakes").innerHTML;
+      intYourFollowers = document.getElementById("yourFollowers").innerHTML;
+      intFriendsFollowers = document.getElementById("friendsFollowers").innerHTML;
+      intYourFollowingCount = document.getElementById("yourFollowing").innerHTML;
+      intFriendsFollowingCount = document.getElementById("friendsFollowing").innerHTML;
+
+      console.log(intYourFollowers + ' ' + intFriendsFollowers + ' ' + intYourFollowingCount + ' ' + intFriendsFollowingCount);
+      //Make Compete
+      if (parseInt(intYourMake) > parseInt(intFriendsMake)) {
+        $('#yourMakeImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-7.png");
+        $('#friendsMakeImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-9.png");
+
+      } else {
+
+        $('#friendsMakeImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-7.png");
+        $('#yourMakeImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-9.png");
+
+      }
+
+      //Followers
+      if (parseInt(intYourFollowers) > parseInt(intFriendsFollowers)) {
+        $('#yourFollowersImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-7.png");
+        $('#friendsFollowersImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-9.png");
+
+      } else {
+
+        $('#friendsFollowersImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-7.png");
+        $('#yourFollowersImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-9.png");
+
+      }
+		//equal icon https://image.flaticon.com/icons/svg/14/14334.svg
+
+     if (parseInt(intYourFollowers) == parseInt(intFriendsFollowers)) {
+        $('#yourFollowersImage').attr("src", "https://image.flaticon.com/icons/svg/14/14334.svg");
+        $('#friendsFollowersImage').attr("src", "https://image.flaticon.com/icons/svg/14/14334.svg");
+      }
+      if (parseInt(intYourMake) == parseInt(intFriendsMake)) {
+        $('#yourMakeImage').attr("src", "https://image.flaticon.com/icons/svg/14/14334.svg");
+        $('#friendsMakeImage').attr("src", "https://image.flaticon.com/icons/svg/14/14334.svg");
+
+      }
+    });
+
+  });
+  $("#divLoading").hide();
+
+
+
+});
+
+
+}
+
+
+
+
+</script>
+
+
+</head>
+
+<body>
+  <div class="container">
+  <div class="jumbotron">
+    <h1>PH Profile Compare</h1>
+    <p>Compare your Product Hunt profile with the fellow hunters.</p>
+  </div>
+
+</div>
+<div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;">
+  <p style="position: absolute; color: White; top: 50%; left: 45%;">
+    Loading, please wait...
+  </p>
+</div>
+<hr>
+<table class="table">
+  <tr>
+    <td>Product Hunt ID</td>
+    <td> <input class="form-control form-control-lg checkInput" type="text" id="yours" placeholder="your id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"></td>
+    <td> <input class="form-control form-control-lg checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> </td>
+
+  </tr>
+  <tr>
+    <td>Go to Product Hunt profile page, and grab the PH ID.<a href="https://cl.ly/ro0W" target="_blank"><img src="https://dha4w82d62smt.cloudfront.net/items/0O0f0J1O27333E0t3S3S/%5B2912f831712b65702535b35607658c2c%5D_Image+2018-05-23+at+10.45.30+PM.png" style="display: block;height: auto;width: 100%;"/></a></td>
+    <td><button type="button" class="btn btn-primary btn-lg checkbutton" id="btnCompare">Compare</button></td>
+    <td> <button type="button" class="btn btn-primary btn-lg" id="btnClear">Clear All</button>
+    </td>
+
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <img id="yourImage" class="img-fluid" src="" style="height: 88px; width:88px" onError="this.onerror=null;this.src='https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg';" />
+
+    </td>
+    <td><img id="friendsImage" class="img-fluid" src="" style="height: 88px; width:88px" onError="this.onerror=null;this.src='https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg';" /></td>
+  </tr>
+  <tr>
+    <td style="width: 10%">Name</td>
+    <td id="yourName"></td>
+    <td id="friendsName"></td>
+
+  </tr>
+  <tr>
+    <td>Username</td>
+    <td id="yourUsername"></td>
+    <td id="friendsUsername"></td>
+  </tr>
+
+
+  <tr>
+    <td>Headline</td>
+    <td id="yourHeadLine"></td>
+    <td id="friendsHeadLine"></td>
+  </tr>
+
+  <tr>
+    <td>Profile Link &nbsp;<i class="fas fa-external-link-alt"></i></td>
+    <td><a id="yourPHLink" target="_blank"></a></td>
+    <td><a id="friendsPHLink" target="_blank"></a></td>
+  </tr>
+  <tr>
+    <td>Website &nbsp;<i class="fas fa-external-link-alt"></i></td>
+    <td><a id="yourWebsite" target="_blank"></a></td>
+    <td><a id="friendsWebsite" target="_blank"></a></td>
+  </tr>
+  <tr>
+    <td>Twitter &nbsp;<i class="fas fa-external-link-alt"></i></td>
+    <td><a id="yourTwitter" target="_blank"></a></td>
+    <td><a id="friendsTwitter" target="_blank"></a></td>
+  </tr>
+  <tr>
+    <td>Followers</td>
+    <td id="yourFollowers"></td>
+    <td id="friendsFollowers"></td>
+  </tr>
+
+  <tr>
+    <td>Following</td>
+    <td id="yourFollowing"></td>
+    <td id="friendsFollowing"></td>
+  </tr>
+
+  <tr>
+    <td>Makes</td>
+    <td id="yourMakes">
+
+    </td>
+    <td id="friendsMakes">
+
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Creator</td>
+    <td>
+      <img id="yourMakeImage" src="" style="height: 24px; width:24px" />
+    </td>
+    <td>
+      <img id="friendsMakeImage" src="" style="height: 24px; width:24px" />
+    </td>
+  </tr>
+  <tr>
+    <td>Leader</td>
+    <td>
+      <img id="yourFollowersImage" src="" style="height: 24px; width:24px" />
+    </td>
+    <td>
+      <img id="friendsFollowersImage" src="" style="height: 24px; width:24px" />
+    </td>
+  </tr>
+
+</table>
+<hr>
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4 mt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase">About</h5>
+        <p>Product Hunt Compare - a simple web app to compare your PH profile with the fellow hunters. </p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <!-- Grid column -->
+      <div class="col-md-6 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase" align="center">Tip Me</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="https://www.buymeacoffee.com/gFyPH84" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a> </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+    </div>
+    <!-- Grid row -->
+  </div>
+  <!-- Footer Links -->
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="https://qainsights.com/">QAInsights.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- UP https://www.freeiconspng.com/uploads/green-arrow-png-7.png
+DOWN https://www.freeiconspng.com/uploads/green-arrow-png-9.png
+-->
+<!-- Footer -->
+
+
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "3Lzmdp2p"
+    }], "*")
+  }
+</script>
+
+</body>
+
+</html>
