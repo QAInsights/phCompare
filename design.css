@@ -1,0 +1,142 @@
+@import url(https://fonts.googleapis.com/css?family=Andada);
+body {
+  padding: 16px;
+  font-family: Andada;
+  background: white;
+  color: #EA532A;
+}
+
+img {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+input {
+  font: inherit;
+  color: black;
+  text-align: inherit;
+  outline: none;
+  cursor: text;
+}
+
+td {
+  text-align: left;
+}
+
+a {
+  color: #563D7C;
+}
+
+.btn-primary {
+  background-color: #563D7C;
+  width: 100%;
+}
+
+.btn.btn-primary[disabled] {
+  background-color: grey;
+}
+
+#mydetails {
+  background: white;
+  border-radius: 4px;
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+  transition: all 0.2s;
+  margin: 0 auto;
+  width: 700px;
+  color: #EA532A;
+}
+
+.jumbotron {
+  background: #563D7C;
+  border-radius: 4px;
+  color: white;
+}
+
+#sub-banner-message {
+  background: #563D7C;
+  border-radius: 4px;
+  padding: 20px;
+  font-size: 18px;
+  text-align: center;
+  transition: all 0.2s;
+  margin: 0 auto;
+  width: 700px;
+  color: white;
+}
+
+#banner-message.alt {
+  background: #0084ff;
+  color: #fff;
+  margin-top: 40px;
+  width: 200px;
+}
+
+/* Start by setting display:none to make this hidden.
+Then we position it in relation to the viewport window
+with position:fixed. Width, height, top and left speak
+speak for themselves. Background we set to 80% white with
+our animation centered, and no-repeating */
+
+#modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* When the body has the loading class, we turn
+the scrollbar off with overflow:hidden */
+
+body.loading {
+  overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+modal element will be visible */
+
+body.loading .modal {
+  display: block;
+}
+
+.footer-bottom {
+  padding: 40px 0 30px;
+  border-top: 1px solid #666;
+  background: #563D7C;
+}
+
+.copyright-text p {
+  color: #ccc;
+  margin-top: 9px;
+  margin-bottom: 0;
+}
+
+.social-link li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.social-link li a {
+  color: #ccc;
+  border: 1px solid #ccc;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  font-size: 14px;
+  transition: .5s;
+}
