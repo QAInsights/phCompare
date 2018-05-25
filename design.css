@@ -1,11 +1,12 @@
-@import url(https://fonts.googleapis.com/css?family=Andada);
+.css-selector {
+  font-family: 'Andada', serif;
+}
 body {
   padding: 16px;
   font-family: Andada;
   background: white;
   color: #EA532A;
 }
-
 img {
   text-align: center;
   display: block;
