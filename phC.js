@@ -4,7 +4,6 @@ $(document).ready(function() {
   $('#btnCompare').attr('disabled', true);
   $('#btnClear').attr('disabled', true);
   $('table').hide(); // Hide table
-
   $('.checkInput').keyup(function() {
     if ($("#yours").val().length != 0 && $("#friends").val().length != 0 && $("#yours").val() > 0 && $("#friends").val() > 0) {
       $('#btnCompare').attr('disabled', false);
