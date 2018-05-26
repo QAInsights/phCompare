@@ -26,6 +26,8 @@ $(document).ready(function() {
   $("#divLoading").hide();
   $("#btnCompare").click(function() {
     $("#divLoading").show();
+    $('table').hide(); // Hide table
+
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
       "client_id": "b98848f0a1d4373e49107c06349aa6ed12ad4dbafa192b2780ca19fa34f56155",
@@ -55,6 +57,8 @@ $(document).ready(function() {
             document.getElementById("yourMakes").innerHTML = "";
             $("#yourImage").attr("src", "https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg");
             $("#divLoading").hide();
+            $('table').hide(); // Hide table
+
           } else {
             document.getElementById("yourName").innerHTML = result.user.name;
             document.getElementById("yourUsername").innerHTML = result.user.username;
@@ -84,6 +88,8 @@ $(document).ready(function() {
           document.getElementById("yourMakes").innerHTML = "";
           $("#yourImage").attr("src", "https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg");
           $("#divLoading").hide();
+          $('table').hide(); // Hide table
+
         }
       }, 'json');
     });
@@ -121,6 +127,8 @@ $(document).ready(function() {
             $("#friendsImage").attr("src", "https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg");
             document.getElementById("friendsMakes").innerHTML = "";
             $("#divLoading").hide();
+            $('table').hide(); // Hide table
+
           } else {
             document.getElementById("friendsName").innerHTML = friendsresult.user.name;
             document.getElementById("friendsUsername").innerHTML = friendsresult.user.username;
@@ -151,6 +159,8 @@ $(document).ready(function() {
           $("#friendsImage").attr("src", "https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg");
           document.getElementById("friendsMakes").innerHTML = "";
           $("#divLoading").hide();
+          $('table').hide(); // Hide table
+
         }
       });
     }, 'json');
