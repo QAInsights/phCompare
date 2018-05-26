@@ -31,14 +31,14 @@ $(document).ready(function() {
     $("#divLoading").show();
     $('table').hide(); // Hide table
 
-    $.getJSON( "apikeys.json", function( data ) {
-      console.log(data.client_id);
+    $.getJSON( "apikeys.json", function( mykey ) {
+      console.log(mykey.client_id);
   });
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
-      "client_id": data.client_id,
-      "client_secret": data.client_secret,
-      "grant_type": data.grant_type
+      "client_id": mykey.client_id,
+      "client_secret": mykey.client_secret,
+      "grant_type": mykey.grant_type
     }, function(data) {
       //get details
       $.ajax({
@@ -106,9 +106,9 @@ $(document).ready(function() {
   $("#btnCompare").click(function() {
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
-      "client_id": data.client_id,
-      "client_secret": data.client_secret,
-      "grant_type": data.grant_type
+      "client_id": mykey.client_id,
+      "client_secret": mykey.client_secret,
+      "grant_type": mykey.grant_type
     }, function(friendsdata) {
       //get details
       $.ajax({
