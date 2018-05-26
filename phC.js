@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  //Read json
+  $.getJSON( "apikeys.json", function( data ) {
+    console.log(data);
+});
+
   //disable compare button
   $('#friendsMakeDiv').append("");
   $('#btnCompare').attr('disabled', true);
