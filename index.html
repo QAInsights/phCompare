@@ -17,7 +17,7 @@
 <body>
   <div class="container">
     <div class="jumbotron">
-      <h1>PH Profile Compare</h1>
+      <h1>phCompare</h1>
       <p>Compare your Product Hunt profile with the fellow hunters.</p>
     </div>
   </div>
@@ -27,20 +27,49 @@
     </p>
   </div>
   <hr>
-  <table class="table">
+  <form class="form-horizontal">
+<fieldset>
+<div class="container center_div">
+<!-- Form Name -->
+<legend>Compare</legend>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Your ID">Your ID</label>
+  <div class="col-md-4">
+  <input id="yours" name="Your ID" type="text" placeholder="Your ID" class="form-control input-md checkInput" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Fellow ID">Fellow ID</label>
+  <div class="col-md-4">
+  <input id="friends" name="Fellow ID" type="text" placeholder="Fellow ID" class="form-control input-md checkInput" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+  </div>
+</div>
+<!-- Button (Double) -->
+<div class="form-group">
+<div class="col-md-8">
+<button type="button" class="btn btn-primary checkbutton" id="btnCompare">Compare</button>
+<button type="button" class="btn btn-primary" id="btnClear">Reset</button></div>
+</div>
+</fieldset>
+</form>
+</div>
+<!--
     <tr>
       <td>Product Hunt ID</td>
       <td> <input class="form-control form-control-lg checkInput" type="text" id="yours" placeholder="your id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"></td>
       <td> <input class="form-control form-control-lg checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> </td>
     </tr>
     <tr>
-      <td>Go to Product Hunt profile page, and grab the PH ID.<a href="https://cl.ly/ro0W" target="_blank"><img src="https://dha4w82d62smt.cloudfront.net/items/0O0f0J1O27333E0t3S3S/%5B2912f831712b65702535b35607658c2c%5D_Image+2018-05-23+at+10.45.30+PM.png" style="display: block;height: auto;width: 100%;"/></a></td>
+      <td>Go to Product Hunt profile page, and grab the PH ID as shown below.<a href="https://cl.ly/ro0W" target="_blank"><img src="https://dha4w82d62smt.cloudfront.net/items/0O0f0J1O27333E0t3S3S/%5B2912f831712b65702535b35607658c2c%5D_Image+2018-05-23+at+10.45.30+PM.png" style="display: block;height: auto;width: 100%;"/></a></td>
       <td><button type="button" class="btn btn-primary btn-lg checkbutton" id="btnCompare">Compare</button></td>
       <td> <button type="button" class="btn btn-primary btn-lg" id="btnClear">Clear All</button>
       </td>
-
     </tr>
-    <tr>
+    <tr> -->
+      <table class="table table-hover">
+      <tr>
       <td></td>
       <td>
         <img id="yourImage" class="img-fluid" src="" style="height: 88px; width:88px" onError="this.onerror=null;this.src='https://www.freeiconspng.com/uploads/person-icon-person-icon-17.jpg';" />
@@ -51,21 +80,17 @@
       <td style="width: 10%">Name</td>
       <td id="yourName"></td>
       <td id="friendsName"></td>
-
     </tr>
     <tr>
       <td>Username</td>
       <td id="yourUsername"></td>
       <td id="friendsUsername"></td>
     </tr>
-
-
     <tr>
       <td>Headline</td>
       <td id="yourHeadLine"></td>
       <td id="friendsHeadLine"></td>
     </tr>
-
     <tr>
       <td>Profile Link &nbsp;<i class="fas fa-external-link-alt"></i></td>
       <td><a id="yourPHLink" target="_blank"></a></td>
@@ -86,27 +111,19 @@
       <td id="yourFollowers"></td>
       <td id="friendsFollowers"></td>
     </tr>
-
     <tr>
       <td>Following</td>
       <td id="yourFollowing"></td>
       <td id="friendsFollowing"></td>
     </tr>
-
     <tr>
       <td>Makes</td>
       <td id="yourMakes">
-
       </td>
       <td id="friendsMakes">
-
       </td>
     </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
+
     <tr>
       <td>Creator</td>
       <td>
@@ -130,34 +147,26 @@
   <hr>
   <!-- Footer -->
   <footer class="page-footer font-small blue pt-4 mt-4">
-
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
-
       <!-- Grid row -->
       <div class="row">
-
         <!-- Grid column -->
         <div class="col-md-6 mt-md-0 mt-3">
-
           <!-- Content -->
           <h5 class="text-uppercase">About</h5>
-          <p>Product Hunt Compare - a simple web app to compare your PH profile with the fellow hunters. </p>
-
+          <p>phCompare - a simple web app to compare your Product Hunt profile with the fellow hunters.</p>
         </div>
         <!-- Grid column -->
-
         <hr class="clearfix w-100 d-md-none pb-3">
         <!-- Grid column -->
         <div class="col-md-6 mb-md-0 mb-3">
-
           <!-- Links -->
           <h5 class="text-uppercase" align="center">Tip Me</h5>
           <ul class="list-unstyled">
             <li>
               <a href="https://www.buymeacoffee.com/gFyPH84" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a> </li>
           </ul>
-
         </div>
         <!-- Grid column -->
       </div>
@@ -166,13 +175,11 @@
     <!-- Footer Links -->
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://qainsights.com/">QAInsights.com</a>
+      <a href="https://qainsights.com/">QAInsights.com</a> |
+      Powered by <a href="https://api.producthunt.com/v1/docs">Product Hunt API</a>
     </div>
     <!-- Copyright -->
   </footer>
-  <!-- UP https://www.freeiconspng.com/uploads/green-arrow-png-7.png
-DOWN https://www.freeiconspng.com/uploads/green-arrow-png-9.png
--->
-  <!-- Footer -->
+<!-- Footer -->
 </body>
 </html>

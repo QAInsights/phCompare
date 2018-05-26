@@ -1,12 +1,20 @@
 $(document).ready(function() {
+  //hide table
+  $('table').hide();
   //disable compare button
   $('#friendsMakeDiv').append("");
   $('#btnCompare').attr('disabled', true);
+  $('#btnClear').attr('disabled', true);
+
   $('.checkInput').keyup(function() {
     if ($("#yours").val().length != 0 && $("#friends").val().length != 0 && $("#yours").val() > 0 && $("#friends").val() > 0) {
       $('#btnCompare').attr('disabled', false);
+      $('#btnClear').attr('disabled', false);
+
     } else {
       $('#btnCompare').attr('disabled', true);
+      $('#btnClear').attr('disabled', true);
+
     }
   })
   //clear button
@@ -14,10 +22,13 @@ $(document).ready(function() {
     document.getElementById("yours").value = "";
     document.getElementById("friends").value = "";
     $('#btnCompare').attr('disabled', true);
+    $('table').hide();
+
   });
-  $("#divLoading").hide();
+  $("#divLoading").hide(); //Loading hide
+  //Compare Click
   $("#btnCompare").click(function() {
-    $("#divLoading").show();
+  $("#divLoading").show();
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
       "client_id": "b98848f0a1d4373e49107c06349aa6ed12ad4dbafa192b2780ca19fa34f56155",
@@ -53,7 +64,6 @@ $(document).ready(function() {
             document.getElementById("yourHeadLine").innerHTML = result.user.headline;
             document.getElementById("yourWebsite").innerHTML = result.user.website_url;
             $("#yourWebsite").attr("href", result.user.website_url);
-
             document.getElementById("yourTwitter").innerHTML = result.user.twitter_username;
             $("#yourTwitter").attr("href", "https://twitter.com/" + result.user.twitter_username);
             document.getElementById("yourFollowers").innerHTML = result.user.followers_count;
@@ -62,6 +72,8 @@ $(document).ready(function() {
             $("#yourPHLink").attr("href", result.user.profile_url);
             $("#yourImage").attr("src", result.user.image_url.original);
             document.getElementById("yourMakes").innerHTML = result.user.maker_of_count;
+            $('table').show(); //Show table
+
           }
         },
         error: function(xhr, textStatus, errorThrown) {
@@ -79,9 +91,7 @@ $(document).ready(function() {
         }
       }, 'json');
     });
-
   });
-
   //Friends
   $("#btnCompare").click(function() {
     //get auth code
@@ -90,9 +100,6 @@ $(document).ready(function() {
       "client_secret": "664ff35f9d806a6b0f72a6d1d53a613dd7366ba6f55873387171c19437efb172",
       "grant_type": "client_credentials"
     }, function(friendsdata) {
-
-      console.log(friendsdata.access_token);
-
       //get details
       $.ajax({
         url: "https://api.producthunt.com/v1/users/" + document.getElementById("friends").value,
@@ -117,7 +124,6 @@ $(document).ready(function() {
             document.getElementById("friendsMakes").innerHTML = "";
             $("#divLoading").hide();
           } else {
-
             document.getElementById("friendsName").innerHTML = friendsresult.user.name;
             document.getElementById("friendsUsername").innerHTML = friendsresult.user.username;
             document.getElementById("friendsHeadLine").innerHTML = friendsresult.user.headline;
@@ -132,6 +138,7 @@ $(document).ready(function() {
             $("#friendsImage").attr("src", friendsresult.user.image_url.original);
             document.getElementById("friendsMakes").innerHTML = friendsresult.user.maker_of_count;
             $("#divLoading").hide();
+            $('table').show(); //Show table
 
           }
         },
@@ -150,15 +157,11 @@ $(document).ready(function() {
         }
       });
     }, 'json');
-
     //Rule Manipulation
     //<!-- UP https://www.freeiconspng.com/uploads/green-arrow-png-7.png
     //DOWN https://www.freeiconspng.com/uploads/green-arrow-png-9.png
-
     //MAKE COUNT
-
     $(document).ajaxStop(function() {
-
       var intYourMake, intFriendsMake;
       var intYourFollowers, intFriendsFollowers;
       var intYourFollowingCount, intFriendsFollowingCount;
@@ -169,33 +172,23 @@ $(document).ready(function() {
       intFriendsFollowers = document.getElementById("friendsFollowers").innerHTML;
       intYourFollowingCount = document.getElementById("yourFollowing").innerHTML;
       intFriendsFollowingCount = document.getElementById("friendsFollowing").innerHTML;
-
-      console.log(intYourFollowers + ' ' + intFriendsFollowers + ' ' + intYourFollowingCount + ' ' + intFriendsFollowingCount);
       //Make Compete
       if (parseInt(intYourMake) > parseInt(intFriendsMake)) {
         $('#yourMakeImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-7.png");
         $('#friendsMakeImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-9.png");
-
       } else {
-
         $('#friendsMakeImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-7.png");
         $('#yourMakeImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-9.png");
-
       }
-
       //Followers
       if (parseInt(intYourFollowers) > parseInt(intFriendsFollowers)) {
         $('#yourFollowersImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-7.png");
         $('#friendsFollowersImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-9.png");
-
       } else {
-
         $('#friendsFollowersImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-7.png");
         $('#yourFollowersImage').attr("src", "https://www.freeiconspng.com/uploads/green-arrow-png-9.png");
-
       }
       //equal icon https://image.flaticon.com/icons/svg/14/14334.svg
-
       if (parseInt(intYourFollowers) == parseInt(intFriendsFollowers)) {
         $('#yourFollowersImage').attr("src", "https://image.flaticon.com/icons/svg/14/14334.svg");
         $('#friendsFollowersImage').attr("src", "https://image.flaticon.com/icons/svg/14/14334.svg");
@@ -203,10 +196,8 @@ $(document).ready(function() {
       if (parseInt(intYourMake) == parseInt(intFriendsMake)) {
         $('#yourMakeImage').attr("src", "https://image.flaticon.com/icons/svg/14/14334.svg");
         $('#friendsMakeImage').attr("src", "https://image.flaticon.com/icons/svg/14/14334.svg");
-
       }
     });
-
   });
   $("#divLoading").hide();
 });
