@@ -1,7 +1,7 @@
 $(document).ready(function() {
   //Read json
   $.getJSON( "apikeys.json", function( data ) {
-    console.log(data);
+    console.log(data.client_id);
 });
 
   //disable compare button
