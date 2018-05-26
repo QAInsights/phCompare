@@ -26,22 +26,34 @@
       Loading, please wait...
     </p>
   </div>
-  <hr>
-  <div class="container center_div">
+   <div class="container center_div">
 <form class="form-horizontal" align="center">
 <fieldset>
 <!-- Form Name -->
 <legend>Compare</legend>
 <!-- Text input-->
 <div class="form-group">
-   <div class="col-md-4">
-  <input class="form-control checkInput" type="text" id="yours" placeholder="your id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
-   </div>
+  <div class="col-md-4">
+     <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="">Your Product Hunt ID&nbsp;&nbsp;&nbsp;</span>
+       </div>
+      <input class="form-control checkInput" type="text" id="yours" placeholder="your id" name="yours" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+      </div>
+      <div class="input-group">
+       <div class="input-group-prepend">
+         <span class="input-group-text" id="">Fellow Product Hunt ID</span>
+        </div>
+       <input  class="form-control checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+       </div>
+   <!-- <input class="form-control checkInput" type="text" id="yours" placeholder="your id" name="yours" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> -->
+ </div>
 </div>
 <!-- Text input-->
 <div class="form-group" >
+
    <div class="col-md-4">
-   <input class="form-control checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+  <!--  <input class="form-control checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> -->
    </div>
 </div>
 <!-- Button (Double) -->
@@ -145,6 +157,7 @@
 </div>
   <hr>
   <!-- Footer -->
+  <div class="container">
   <footer class="page-footer font-small blue pt-4 mt-4">
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
@@ -174,10 +187,11 @@
     <!-- Footer Links -->
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://qainsights.com/">QAInsights.com</a>
+      <a href="https://qainsights.com/">QAInsights.com</a> ~ Powered by Product Hunt API.
     </div>
     <!-- Copyright -->
   </footer>
+</div>
   <!-- UP https://www.freeiconspng.com/uploads/green-arrow-png-7.png
 DOWN https://www.freeiconspng.com/uploads/green-arrow-png-9.png
 -->
