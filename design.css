@@ -38,8 +38,7 @@ a {
 
 .btn-primary {
   background-color: #563D7C;
-  width: 100%;
-}
+  }
 
 .btn.btn-primary[disabled] {
   background-color: grey;

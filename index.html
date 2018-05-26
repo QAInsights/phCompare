@@ -27,7 +27,34 @@
     </p>
   </div>
   <hr>
-  <table class="table">
+  <div class="container center_div">
+<form class="form-horizontal" align="center">
+<fieldset>
+<!-- Form Name -->
+<legend>Compare</legend>
+<!-- Text input-->
+<div class="form-group">
+   <div class="col-md-4">
+  <input class="form-control checkInput" type="text" id="yours" placeholder="your id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+   </div>
+</div>
+<!-- Text input-->
+<div class="form-group" >
+   <div class="col-md-4">
+   <input class="form-control checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+   </div>
+</div>
+<!-- Button (Double) -->
+<div class="form-group" align="left">
+   <div class="col-md-8">
+  <button type="button" class="btn btn-primary checkbutton" id="btnCompare" >Compare</button>
+    <button type="button" class="btn btn-primary checkbutton" id="btnClear" >Reset</button>
+  </div>
+</div>
+</fieldset>
+</form>
+</div>
+  <!--<table class="table">
     <tr>
       <td>Product Hunt ID</td>
       <td> <input class="form-control form-control-lg checkInput" type="text" id="yours" placeholder="your id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"></td>
@@ -39,7 +66,8 @@
       <td> <button type="button" class="btn btn-primary btn-lg" id="btnClear">Clear All</button>
       </td>
 
-    </tr>
+    </tr> -->
+    <table class="table table-hover">
     <tr>
       <td></td>
       <td>
@@ -51,21 +79,17 @@
       <td style="width: 10%">Name</td>
       <td id="yourName"></td>
       <td id="friendsName"></td>
-
     </tr>
     <tr>
       <td>Username</td>
       <td id="yourUsername"></td>
       <td id="friendsUsername"></td>
     </tr>
-
-
     <tr>
       <td>Headline</td>
       <td id="yourHeadLine"></td>
       <td id="friendsHeadLine"></td>
     </tr>
-
     <tr>
       <td>Profile Link &nbsp;<i class="fas fa-external-link-alt"></i></td>
       <td><a id="yourPHLink" target="_blank"></a></td>
@@ -86,26 +110,17 @@
       <td id="yourFollowers"></td>
       <td id="friendsFollowers"></td>
     </tr>
-
     <tr>
       <td>Following</td>
       <td id="yourFollowing"></td>
       <td id="friendsFollowing"></td>
     </tr>
-
     <tr>
       <td>Makes</td>
       <td id="yourMakes">
-
       </td>
       <td id="friendsMakes">
-
       </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
     </tr>
     <tr>
       <td>Creator</td>
@@ -125,39 +140,30 @@
         <img id="friendsFollowersImage" src="" style="height: 24px; width:24px" />
       </td>
     </tr>
-
   </table>
   <hr>
   <!-- Footer -->
   <footer class="page-footer font-small blue pt-4 mt-4">
-
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
-
       <!-- Grid row -->
       <div class="row">
-
         <!-- Grid column -->
         <div class="col-md-6 mt-md-0 mt-3">
-
           <!-- Content -->
           <h5 class="text-uppercase">About</h5>
           <p>Product Hunt Compare - a simple web app to compare your PH profile with the fellow hunters. </p>
-
         </div>
         <!-- Grid column -->
-
         <hr class="clearfix w-100 d-md-none pb-3">
         <!-- Grid column -->
         <div class="col-md-6 mb-md-0 mb-3">
-
           <!-- Links -->
           <h5 class="text-uppercase" align="center">Tip Me</h5>
           <ul class="list-unstyled">
             <li>
               <a href="https://www.buymeacoffee.com/gFyPH84" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a> </li>
           </ul>
-
         </div>
         <!-- Grid column -->
       </div>
