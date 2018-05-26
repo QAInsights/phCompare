@@ -35,9 +35,9 @@ $(document).ready(function() {
 
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
-      "client_id": "b98848f0a1d4373e49107c06349aa6ed12ad4dbafa192b2780ca19fa34f56155",
-      "client_secret": "664ff35f9d806a6b0f72a6d1d53a613dd7366ba6f55873387171c19437efb172",
-      "grant_type": "client_credentials"
+      "client_id": data.client_id,
+      "client_secret": data.client_secret,
+      "grant_type": data.grant_type
     }, function(data) {
       //get details
       $.ajax({
@@ -105,9 +105,9 @@ $(document).ready(function() {
   $("#btnCompare").click(function() {
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
-      "client_id": "b98848f0a1d4373e49107c06349aa6ed12ad4dbafa192b2780ca19fa34f56155",
-      "client_secret": "664ff35f9d806a6b0f72a6d1d53a613dd7366ba6f55873387171c19437efb172",
-      "grant_type": "client_credentials"
+      "client_id": data.client_id,
+      "client_secret": data.client_secret,
+      "grant_type": data.grant_type
     }, function(friendsdata) {
       //get details
       $.ajax({
