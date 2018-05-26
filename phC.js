@@ -1,8 +1,6 @@
 $(document).ready(function() {
   //Read json
-  $.getJSON( "apikeys.json", function( data ) {
-    console.log(data.client_id);
-});
+
 
   //disable compare button
   $('#friendsMakeDiv').append("");
@@ -33,6 +31,9 @@ $(document).ready(function() {
     $("#divLoading").show();
     $('table').hide(); // Hide table
 
+    $.getJSON( "apikeys.json", function( data ) {
+      console.log(data.client_id);
+  });
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
       "client_id": data.client_id,
