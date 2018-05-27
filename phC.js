@@ -1,7 +1,5 @@
 $(document).ready(function() {
   //Read json
-
-
   //disable compare button
   $('#friendsMakeDiv').append("");
   $('#btnCompare').attr('disabled', true);
@@ -14,7 +12,6 @@ $(document).ready(function() {
     } else {
       $('#btnCompare').attr('disabled', true);
       $('#btnClear').attr('disabled', true);
-
     }
   })
   //clear button
@@ -24,16 +21,14 @@ $(document).ready(function() {
     $('#btnCompare').attr('disabled', true);
     $('#btnClear').attr('disabled', true);
     $('table').hide(); // Hide table
-
   });
   $("#divLoading").hide();
+
   $("#btnCompare").click(function() {
     $("#divLoading").show();
     $('table').hide(); // Hide table
-
     $.getJSON( "apikeys.json", function( mykey ) {
       console.log(mykey.client_id);
-  });
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
       "client_id": mykey.client_id,
@@ -221,4 +216,6 @@ $(document).ready(function() {
     });
   });
   $("#divLoading").hide();
+});
+
 });
