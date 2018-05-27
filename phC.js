@@ -27,13 +27,11 @@ $(document).ready(function() {
   $("#btnCompare").click(function() {
     $("#divLoading").show();
     $('table').hide(); // Hide table
-    $.getJSON( "apikeys.json", function( mykey ) {
-      console.log(mykey.client_id);
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
-      "client_id": mykey.client_id,
-      "client_secret": mykey.secret,
-      "grant_type": mykey.grant_type
+      "client_id": "b98848f0a1d4373e49107c06349aa6ed12ad4dbafa192b2780ca19fa34f56155",
+      "client_secret": "664ff35f9d806a6b0f72a6d1d53a613dd7366ba6f55873387171c19437efb172",
+      "grant_type": "client_credentials"
     }, function(data) {
       //get details
       $.ajax({
@@ -101,9 +99,9 @@ $(document).ready(function() {
   $("#btnCompare").click(function() {
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
-      "client_id": mykey.client_id,
-      "client_secret": mykey.client_secret,
-      "grant_type": mykey.grant_type
+      "client_id": "b98848f0a1d4373e49107c06349aa6ed12ad4dbafa192b2780ca19fa34f56155",
+      "client_secret": "664ff35f9d806a6b0f72a6d1d53a613dd7366ba6f55873387171c19437efb172",
+      "grant_type": "client_credentials"
     }, function(friendsdata) {
       //get details
       $.ajax({
@@ -216,6 +214,4 @@ $(document).ready(function() {
     });
   });
   $("#divLoading").hide();
-});
-
 });
