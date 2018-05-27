@@ -5,7 +5,7 @@ body {
   padding: 16px;
   font-family: Andada;
   background: white;
-  color: #EA532A;
+  color: #563D7C;
 }
 img {
   text-align: center;
@@ -53,13 +53,19 @@ a {
   transition: all 0.2s;
   margin: 0 auto;
   width: 700px;
-  color: #EA532A;
+  color: #563D7C;
 }
 
 .jumbotron {
   background: #563D7C;
   border-radius: 4px;
   color: white;
+  height: 200px;
+
+}
+.containerHead{
+  background: #563D7C;
+
 }
 
 #sub-banner-message {
