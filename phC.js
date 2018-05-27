@@ -32,7 +32,7 @@ $(document).ready(function() {
     //get auth code
     $.post('https://api.producthunt.com/v1/oauth/token', {
       "client_id": mykey.client_id,
-      "client_secret": mykey.client_secret,
+      "client_secret": mykey.secret,
       "grant_type": mykey.grant_type
     }, function(data) {
       //get details
