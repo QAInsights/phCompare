@@ -31,66 +31,80 @@
         </div>
     </div>
 </div> -->
+<!--
 <div class="container">
     <div class="row">
         <div class="col-xs-6 col-md-4 col-lg-2 vcenter">
             <div style="height:10em;">
-                          <img src="icon.png" style="height: 120px; width:120px" ></img>
+              <img src="icon.png" style="height: 120px; width:120px" ></img>
             </div>
         </div>
         <div class="col-xs-6 col-md-8 col-lg-10 vcenter">
-            <div style="height:3em;solid #F00">
+            <div style="height:3em;solid #F00;">
               <h1>phCompare</h1>
               <p>Compare your Product Hunt profile with the fellow hunters.</p>
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
+<div class="container">
+        <h3 class="text-muted">phCompare</h3>
+        <p class="lead">Compare your Product Hunt profile with the fellow hunters.</p>
+</div>
+<hr>
   <div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;">
     <p style="position: absolute; color: White; top: 50%; left: 45%;">
       Loading, please wait...
     </p>
   </div>
-   <div class="container center_div">
-<form class="form-horizontal" align="center">
-<fieldset>
-<!-- Form Name -->
-<legend>Compare</legend>
-<!-- Text input-->
-<div class="form-group">
-  <div class="col-md-4">
-     <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="">Your Product Hunt ID&nbsp;&nbsp;&nbsp;</span>
-       </div>
-      <input class="form-control checkInput" type="text" id="yours" placeholder="your id" name="yours" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
-      </div>
-      <div class="input-group">
-       <div class="input-group-prepend">
-         <span class="input-group-text" id="">Fellow Product Hunt ID</span>
-        </div>
-       <input  class="form-control checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
-       </div>
-   <!-- <input class="form-control checkInput" type="text" id="yours" placeholder="your id" name="yours" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> -->
- </div>
-</div>
-<!-- Text input-->
-<div class="form-group" >
-
-   <div class="col-md-4">
-  <!--  <input class="form-control checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> -->
-   </div>
-</div>
-<!-- Button (Double) -->
-<div class="form-group" align="left">
-   <div class="col-md-8">
-  <button type="button" class="btn btn-primary checkbutton" id="btnCompare" >Compare</button>
-    <button type="button" class="btn btn-primary checkbutton" id="btnClear" >Reset</button>
+  <div class="container">
+    <h6 class="card-title">What is Product Hunt ID?</h6>
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="phid.png" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">Go to your Product Hunt profile page, grab the number as shown above and enter it below.</p>
+    </div>
   </div>
-</div>
-</fieldset>
-</form>
+<hr>
+<div class="container center_div">
+    <form class="form-horizontal" align="center">
+        <fieldset>
+        <!-- Form Name -->
+        <!-- Text input-->
+            <div class="form-group">
+              <h2 class="text-muted">Compare</h2>
+              <div class="col-md-4">
+                 <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="">Your Product Hunt ID&nbsp;&nbsp;&nbsp;</span>
+                  </div>
+                  <input class="form-control checkInput" type="text" id="yours" placeholder="your id" name="yours" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                  </div>
+                  <div class="input-group">
+                   <div class="input-group-prepend">
+                     <span class="input-group-text" id="">Fellow Product Hunt ID</span>
+                    </div>
+                   <input  class="form-control checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                   </div>
+               <!-- <input class="form-control checkInput" type="text" id="yours" placeholder="your id" name="yours" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> -->
+             </div>
+            </div>
+        <!-- Text input-->
+        <div class="form-group" >
+           <div class="col-md-4">
+          <!--  <input class="form-control checkInput" type="text" id="friends" placeholder="fellow id" name="number" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"> -->
+           </div>
+        </div>
+        <!-- Button (Double) -->
+        <div class="form-group" align="left">
+               <div class="col-md-8">
+                 <button type="button" class="btn btn-primary checkbutton" id="btnCompare" >Compare</button>
+                 <button type="button" class="btn btn-primary checkbutton" id="btnClear" >Reset</button>
+              </div>
+        </div>
+        </fieldset>
+    </form>
 </div>
   <!--<table class="table">
     <tr>
@@ -103,7 +117,6 @@
       <td><button type="button" class="btn btn-primary btn-lg checkbutton" id="btnCompare">Compare</button></td>
       <td> <button type="button" class="btn btn-primary btn-lg" id="btnClear">Clear All</button>
       </td>
-
     </tr> -->
     <div class="container">
     <table class="table table-hover">
@@ -181,7 +194,7 @@
     </tr>
   </table>
 </div>
-  <hr>
+<hr>
   <!-- Footer -->
   <div class="container">
   <footer class="page-footer font-small blue pt-4 mt-4">
@@ -212,7 +225,7 @@
     <!-- Footer Links -->
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2018 Copyright:
-      <a href="https://qainsights.com/">QAInsights.com</a> ~ Powered by Product Hunt API.
+      <a href="https://qainsights.com/" target="_blank">QAInsights.com</a> ~ Powered by <a href="https://api.producthunt.com/v1/docs" target="_blank">Product Hunt API</a>.
     </div>
     <!-- Copyright -->
   </footer>
